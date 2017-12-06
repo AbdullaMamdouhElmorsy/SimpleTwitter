@@ -24,26 +24,18 @@ public class UserInfoFragment extends Fragment {
     TextView mTextViewUserFullName;
     @Bind(R.id.tvUserTagLine)
     TextView mTextViewUserTageLine;
-    @Bind(R.id.tvProfileFollowers)
-    TextView mTextViewUserProfileFollowers;
-    @Bind(R.id.tvProfileFollowing)
-    TextView mTextViewUserProfileFollowing;
     @Bind(R.id.ivUserProfileBackgroundImage)
     ImageView mImageViewUserBackgroundProfileImage;
 
     public static UserInfoFragment newInstance(String profileUrl,
                                                String profileBackgroundUrl,
                                                String name,
-                                               String tagLine,
-                                               String followers,
-                                               String following) {
+                                               String tagLine) {
         UserInfoFragment userInfoFragment = new UserInfoFragment();
         Bundle args = new Bundle();
         args.putString("profile_url", profileUrl);
         args.putString("full_name", name);
         args.putString("tag_line", tagLine);
-        args.putString("followers", followers);
-        args.putString("following", following);
         args.putString("profile_background_image_url", profileBackgroundUrl);
         userInfoFragment.setArguments(args);
         return userInfoFragment;
@@ -65,13 +57,16 @@ public class UserInfoFragment extends Fragment {
 
         mTextViewUserFullName.setText(getArguments().getString("full_name"));
         mTextViewUserTageLine.setText(getArguments().getString("tag_line"));
-        mTextViewUserProfileFollowers.setText(getArguments().getString("followers") + " Followers");
-        mTextViewUserProfileFollowing.setText(getArguments().getString("following") + " Following");
 
         Glide.with(getContext()).load(getArguments().getString("profile_url"))
                 .placeholder(R.mipmap.ic_wifi)
                 .fitCenter()
                 .into(mImageViewUserProfileImage);
+
+        Glide.with(getContext()).load(getArguments().getString("profile_background_image_url"))
+                .placeholder(R.drawable.striped)
+                .fitCenter()
+                .into(mImageViewUserBackgroundProfileImage);
 
         return v;
     }

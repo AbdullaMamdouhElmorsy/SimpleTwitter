@@ -77,8 +77,7 @@ public class ProfileActivity extends AppCompatActivity {
                     UserInfoFragment.newInstance(
                             newUser.getProfileImageUrl(),
                             newUser.getProfileBackgroundImageUrl(),
-                            newUser.getUserName(), newUser.getTagLine(),
-                            newUser.getFollowers(), newUser.getFollowing());
+                            newUser.getUserName(), newUser.getTagLine());
 
             //Display the UserTimelinefragment in this activity(dynamically)
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();

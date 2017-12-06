@@ -30,9 +30,6 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import cz.msebera.android.httpclient.Header;
 
-/**
- * Created by spandhare on 2/27/16.
- */
 public class UserTimelineFragment extends TweetsFragment {
     private LinearLayoutManager layoutManager;
     private LinkedList<Tweet> mTweets;
@@ -64,31 +61,17 @@ public class UserTimelineFragment extends TweetsFragment {
                 DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL_LIST);
         mRecyclerViewTweets.addItemDecoration(itemDecoration);
 
-        // Setup layout manager for items
         layoutManager = new LinearLayoutManager(getActivity());
-        // Control orientation of the items
-        // also supports LinearLayoutManager.HORIZONTAL
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-        // Optionally customize the position you want to default scroll to
         layoutManager.scrollToPosition(0);
-        // Set layout manager to position the items
-        // Attach the layout manager to the recycler view
-
         mRecyclerViewTweets.setLayoutManager(layoutManager);
 
         mRecyclerViewTweets.addOnScrollListener(
                 new EndlessRecyclerViewScrollListener(layoutManager) {
                     @Override
                     public void onLoadMore(int page, int totalItemsCount) {
-                        // Triggered only when new data needs to be appended to the list
-                        // Add whatever code is needed to append new items to the bottom of the list
                         Toast.makeText(getContext(),
                                 "Loading more...", Toast.LENGTH_SHORT).show();
-                        // Send an API request to retrieve appropriate data using the offset value as a parameter.
-                        // Deserialize API response and then construct new objects to append to the adapter
-                        // Add the new objects to the data source for the adapter
-                        // For efficiency purposes, notify the adapter of only the elements that got changed
-                        // curSize will equal to the index of the first element inserted because the list is 0-indexed
                         populateTimeLine(true, false);
 
                     }
@@ -97,9 +80,6 @@ public class UserTimelineFragment extends TweetsFragment {
         mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                // Your code to refresh the list here.
-                // Make sure you call swipeContainer.setRefreshing(false)
-                // once the network request has completed successfully.
                 populateTimeLine(false, true);
             }
         });
@@ -111,7 +91,6 @@ public class UserTimelineFragment extends TweetsFragment {
         } else {
             mTweets.clear();
             mComplexRecyclerViewuserTimelineAdapter.notifyDataSetChanged();
-            //kick off realtime timelines
             populateTimeLine(false, false);
         }
 
@@ -161,15 +140,11 @@ public class UserTimelineFragment extends TweetsFragment {
                                 } else {
                                     mTweets.addAll(fetchedTweets);
                                 }
-                                Log.i("UserTimelineFragment", mTweets.getFirst().getIdStr() + " max id");
-                                Log.i("UserTimelineFragment", mTweets.getLast().getIdStr() + " since id");
-                                Log.i("UserTimelineFragment", mTweets.size() + " tweets found");
                             }
                         } catch (JsonParseException e) {
                             Log.d("Async onSuccess", "Json parsing error:" + e.getMessage(), e);
                         }
 
-                        //notify adapter
                         if (isScrolled) {
                             mComplexRecyclerViewuserTimelineAdapter.notifyItemRangeInserted(
                                     mComplexRecyclerViewuserTimelineAdapter.getItemCount(),
@@ -177,8 +152,6 @@ public class UserTimelineFragment extends TweetsFragment {
                         } else if (isRefreshed) {
                             mComplexRecyclerViewuserTimelineAdapter.notifyItemRangeInserted(0,
                                     fetchedTweets.size());
-                            //layoutManager.scrollToPosition(0);
-                            // Now we call setRefreshing(false) to signal refresh has finished
                             mSwipeRefreshLayout.setRefreshing(false);
 
                         } else {
