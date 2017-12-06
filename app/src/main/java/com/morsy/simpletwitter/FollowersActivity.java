@@ -1,6 +1,7 @@
 package com.morsy.simpletwitter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
@@ -114,6 +115,14 @@ public class FollowersActivity extends AppCompatActivity {
             populateFollowers(false, false);
         }
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent a = new Intent(Intent.ACTION_MAIN);
+        a.addCategory(Intent.CATEGORY_HOME);
+        a.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(a);
     }
 
     private void populateFollowers(final boolean isScrolled, final boolean isRefreshed) {

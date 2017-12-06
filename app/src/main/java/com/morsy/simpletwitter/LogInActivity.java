@@ -26,6 +26,7 @@ public class LogInActivity extends  OAuthLoginActionBarActivity<TwitterClient> {
     }
 
 
+
     @Override
     public void onLoginSuccess() {
         Toast.makeText(LogInActivity.this , "loggedin" , Toast.LENGTH_LONG).show();
