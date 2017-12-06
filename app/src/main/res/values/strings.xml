@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">SimpleTwitter</string>
+    <string name="log_in">Log In Twitter</string>
+    <string name="com.twitter.sdk.android.CONSUMER_KEY">PIF4WKYsvYpD4pfsp00bd4QEi</string>
+    <string name="com.twitter.sdk.android.CONSUMER_SECRET">	4NUsE3uBeTABIpdW05Qn171eiQ9JHn42I9183dvB2uiboHCD0P</string>
+    <string name="user_profile_followers"> Followers</string>
+    <string name="user_profile_following"> Following</string>
+    <string name="name">Name</string>
+    <string name="tagline">TagLine</string>
 </resources>
