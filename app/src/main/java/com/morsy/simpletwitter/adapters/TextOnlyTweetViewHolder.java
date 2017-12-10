@@ -38,7 +38,6 @@ public class TextOnlyTweetViewHolder extends RecyclerView.ViewHolder
 
         this.mTweets = mTweets;
         this.mContext = context;
-        // Attach a click listener to the entire row view
         ButterKnife.bind(this, view);
 
     }

@@ -71,7 +71,6 @@ public class ProfileActivity extends AppCompatActivity {
 
     void loadPage(Bundle savedInstanceState, String screenName) {
         if (savedInstanceState == null) {
-            //Create UserTimelinefragment
             UserTimelineFragment userTimelineFragment = UserTimelineFragment.newInstance(screenName);
             UserInfoFragment userInfoFragment =
                     UserInfoFragment.newInstance(
@@ -79,7 +78,6 @@ public class ProfileActivity extends AppCompatActivity {
                             newUser.getProfileBackgroundImageUrl(),
                             newUser.getUserName(), newUser.getTagLine());
 
-            //Display the UserTimelinefragment in this activity(dynamically)
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
             ft.replace(R.id.flUserTimelineContainer, userTimelineFragment);
             ft.replace(R.id.rlUserHeader, userInfoFragment);

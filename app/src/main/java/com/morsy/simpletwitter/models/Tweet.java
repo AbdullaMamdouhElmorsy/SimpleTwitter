@@ -57,9 +57,6 @@ public class Tweet implements Parcelable {
 
     @Column(name = "Media_Content_Type")
     private String media_content_type = "";
-
-//    @Column(name = "User",  onUpdate = Column.ForeignKeyAction.CASCADE,
-//            onDelete = Column.ForeignKeyAction.CASCADE)
     private User user;
 
     @Column(name = "UserId")
@@ -77,17 +74,10 @@ public class Tweet implements Parcelable {
         this.text = text;
     }
 
-    public String getRetweet_count() {
-        return retweet_count;
-    }
-
     public void setRetweet_count(String retweet_count) {
         this.retweet_count = retweet_count;
     }
 
-    public String getFavourite_count() {
-        return favourite_count;
-    }
 
     public void setFavourite_count(String favourite_count) {
         this.favourite_count = favourite_count;
@@ -109,9 +99,6 @@ public class Tweet implements Parcelable {
         this.media_url = media_url;
     }
 
-    public String getMedia_content_type() {
-        return media_content_type;
-    }
 
     public void setMedia_content_type(String media_content_type) {
         this.media_content_type = media_content_type;
@@ -126,10 +113,6 @@ public class Tweet implements Parcelable {
     }
 
 
-    public String getIdStr() {
-        return idStr;
-    }
-
     public void setIdStr(String idStr) {
         this.idStr = idStr;
     }
@@ -142,16 +125,8 @@ public class Tweet implements Parcelable {
         this.created_at = created_at;
     }
 
-    public String getVideo_url() {
-        return video_url;
-    }
-
     public void setVideo_url(String video_url) {
         this.video_url = video_url;
-    }
-
-    public long getUser_id() {
-        return user_id;
     }
 
     public void setUser_id(long user_id) {

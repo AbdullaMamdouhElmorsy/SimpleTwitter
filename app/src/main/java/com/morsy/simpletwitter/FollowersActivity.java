@@ -77,8 +77,6 @@ public class FollowersActivity extends AppCompatActivity {
                 new EndlessRecyclerViewScrollListener(layoutManager) {
                     @Override
                     public void onLoadMore(int page, int totalItemsCount) {
-                        // Triggered only when new data needs to be appended to the list
-                        // Add whatever code is needed to append new items to the bottom of the list
                         Toast.makeText(getApplicationContext(),
                                 "Loading more...", Toast.LENGTH_SHORT).show();
                         populateFollowers(true, false);
@@ -89,9 +87,6 @@ public class FollowersActivity extends AppCompatActivity {
         mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                // Your code to refresh the list here.
-                // Make sure you call swipeContainer.setRefreshing(false)
-                // once the network request has completed successfully.
                 populateFollowers(false, false);
             }
         });
@@ -111,7 +106,6 @@ public class FollowersActivity extends AppCompatActivity {
         } else {
             mUsers.clear();
             mRecyclerViewFollowersAdapter.notifyDataSetChanged();
-            //kick off realtime timelines
             populateFollowers(false, false);
         }
 
@@ -162,15 +156,12 @@ public class FollowersActivity extends AppCompatActivity {
                                 Log.d("Async onSuccess", "Json parsing error:" + e.getMessage(), e);
                             }
 
-                            //notify adapter
                             if (isScrolled) {
                                 mRecyclerViewFollowersAdapter.notifyItemRangeInserted(
                                         mRecyclerViewFollowersAdapter.getItemCount(),
                                         fetchedUsers.size());
                             } else if (isRefreshed) {
                                 mRecyclerViewFollowersAdapter.notifyDataSetChanged();
-                                //layoutManager.scrollToPosition(0);
-                                // Now we call setRefreshing(false) to signal refresh has finished
                                 mSwipeRefreshLayout.setRefreshing(false);
 
                             } else {
@@ -192,8 +183,6 @@ public class FollowersActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        //getMenuInflater().inflate(R.menu.timeline, menu);
         return true;
     }
 

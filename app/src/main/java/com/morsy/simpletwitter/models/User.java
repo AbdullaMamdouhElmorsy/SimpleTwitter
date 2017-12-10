@@ -100,16 +100,8 @@ public class User implements Parcelable {
         this.tagLine = tagLine;
     }
 
-    public String getFollowers() {
-        return followers;
-    }
-
     public void setFollowers(String followers) {
         this.followers = followers;
-    }
-
-    public String getFollowing() {
-        return following;
     }
 
     public void setFollowing(String following) {

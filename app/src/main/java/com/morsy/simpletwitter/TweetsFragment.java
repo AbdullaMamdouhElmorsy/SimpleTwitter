@@ -17,7 +17,7 @@ public abstract class TweetsFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mTwitterClient = TwitterApplication.getRestClient(); //singleton client
+        mTwitterClient = TwitterApplication.getRestClient();
 
     }
 
